@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TFS RESTful API</title>
+
+	<style type="text/css">
+
+		body {
+			text-align: center;
+		}
+
+	</style>
+
+</head>
+<body>
+	<img src="@Path['~/Content/nancy-logo.png']" alt="Nancy logo" /><br />
+	<p>This view was rendered using the SuperSimpleViewEngine and Nancy.</p>
+	<p>Try this out for Changesets: <a href="/changesets">this</a></p>
+</body>
+</html>
