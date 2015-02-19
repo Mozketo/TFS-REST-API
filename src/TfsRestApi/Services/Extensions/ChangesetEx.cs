@@ -19,6 +19,8 @@
                 CreationDate = cs.CreationDate,
                 CreationDateHuman = cs.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 Changes = cs.Changes,
+                Owner = cs.Owner,
+                OwnerDisplayName = cs.OwnerDisplayName,
             };
         }
 
@@ -33,6 +35,8 @@
                 CreationDate = mc.Changeset.CreationDate,
                 CreationDateHuman = mc.Changeset.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 Changes = mc.Changeset.Changes,
+                Owner = mc.Changeset.Owner,
+                OwnerDisplayName = mc.Changeset.OwnerDisplayName,
                 PartialMerge = mc.Partial,
             };
         }

@@ -91,6 +91,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChangetsetService.cs" />
     <Compile Include="Services\Extensions\ChangesetEx.cs" />
+    <Compile Include="Services\Extensions\StringEx.cs" />
     <Compile Include="Services\Settings.cs" />
     <Compile Include="Services\TfsService.cs" />
   </ItemGroup>

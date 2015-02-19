@@ -11,7 +11,7 @@
     public interface IChangesetService
     {
         IEnumerable<TfsChangeset> History(string projectPath, DateTime from, bool includeChanges);
-        IEnumerable<TfsChangesetMerged> MergeCandidates(string source, string destination);
+        IEnumerable<TfsChangesetMerged> MergeCandidates(string source, string destination, string ignoreStartsWith);
     }
 
     public class ChangesetService : IChangesetService
@@ -36,9 +36,10 @@
         /// <summary>
         /// Provide a list of candidate changesets that have not been merged between the source and destination.
         /// </summary>
-        public IEnumerable<TfsChangesetMerged> MergeCandidates(string source, string destination)
+        public IEnumerable<TfsChangesetMerged> MergeCandidates(string source, string destination, string ignoreStartsWith)
         {
             var result = _tfsService.VCS.GetMergeCandidates(source, destination, RecursionType.Full)
+                .Where(mc => !mc.Changeset.Comment.StartsWith(ignoreStartsWith, StringComparison.CurrentCultureIgnoreCase))
                 .Select(mc => mc.ToModel());
             return result;
         }
@@ -129,6 +130,8 @@
         public string Comment { get; set; }
         public string Committer { get; set; }
         public string CommitterDisplayName { get; set; }
+        public string Owner { get; set; }
+        public string OwnerDisplayName { get; set; }
         public DateTime CreationDate { get; set; }
         public string CreationDateHuman { get; set; }
         public Change[] Changes { get; set; }
