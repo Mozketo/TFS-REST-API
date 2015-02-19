@@ -15,11 +15,11 @@
         {
             Get["/changesets"] = parameters =>
             {
-                string projectPath = Request.Query.projectPath;
+                string source = Request.Query.source;
                 var from = Request.Query.from;
                 bool includeChanges = false;
 
-                var history = changesetService.History(projectPath, from, includeChanges);
+                var history = changesetService.History(source, from, includeChanges);
 
                 return Response.AsJson((IEnumerable<TfsChangeset>)history);
             };
