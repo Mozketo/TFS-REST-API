@@ -4,19 +4,21 @@
     using Nancy;
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using TfsRestApi.Services;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using TfsRestApi.Services;
     using TfsRestApi.Services.Extensions;
 
     public class BranchModule : NancyModule
     {
         public BranchModule(IBranchService branchService)
         {
-            Get["/branches"] = parameters =>
+            Get["/branches", runAsync: true] = async (parameter, ct) =>
             {
-                var source = Request.Query.source;
-                var branches = branchService.Get(source);
+                dynamic source = Request.Query.source;
+
+                var branches = await Task.Run(() => branchService.Get(source));
 
                 return Response.AsJson((IEnumerable<string>)branches);
             };
