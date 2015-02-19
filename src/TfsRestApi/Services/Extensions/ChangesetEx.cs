@@ -21,5 +21,20 @@
                 Changes = cs.Changes,
             };
         }
+
+        public static TfsChangesetMerged ToModel(this MergeCandidate mc)
+        {
+            return new TfsChangesetMerged
+            {
+                Changesetid = mc.Changeset.ChangesetId,
+                Comment = mc.Changeset.Comment,
+                Committer = mc.Changeset.Committer,
+                CommitterDisplayName = mc.Changeset.CommitterDisplayName,
+                CreationDate = mc.Changeset.CreationDate,
+                CreationDateHuman = mc.Changeset.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                Changes = mc.Changeset.Changes,
+                PartialMerge = mc.Partial,
+            };
+        }
     }
 }

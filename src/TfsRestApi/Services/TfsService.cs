@@ -4,11 +4,13 @@
     using Microsoft.TeamFoundation.Client;
     using System.Net;
     using System.Threading.Tasks;
+    using Microsoft.TeamFoundation.VersionControl.Client;
 
     public interface ITfsService
     {
         TfsTeamProjectCollection Connection();
         //Task<TfsTeamProjectCollection> ConnectionAsync();
+        VersionControlServer VCS { get; }
     }
 
     public class TfsService : ITfsService
@@ -29,6 +31,16 @@
             var server = new TfsTeamProjectCollection(new System.Uri(tfsUrl), credentials);
             server.Authenticate();
             return server;
+        }
+
+        public VersionControlServer VCS
+        {
+            get
+            {
+                var tfs = Connection();
+                var vcs = tfs.GetService<VersionControlServer>();
+                return vcs;
+            }
         }
     }
 }
