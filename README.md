@@ -4,6 +4,20 @@ Microsoft offer an API to access TFS programmatically which allow you to write a
 
 This project is written in C# and Nancy. I'm not creating a comprensive mapping so you're welcome to fork and extend as you see fit.
 
+## What can it do?
+
+	// List all changesets of a branch from a point in time. Where $/project is TFS path to search,
+	/changesets?projectPath=$/project&from=2015/02/06
+
+	// Details of a single Changeset (by changeset ID),
+	/changeset/{id}
+
+	// List of branches of a branch (deleted branches should be ignored). Where $/project is TFS path to search,
+	/branches?source=$/project
+
+	// Changesets that have not been merged between two (2) branches,
+	/merge/candidates?source=$/project1&destination=$/branch2
+
 ## How to build
 
 1. Grab the source and run Build.cmd,
